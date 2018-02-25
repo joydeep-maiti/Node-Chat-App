@@ -25,6 +25,15 @@ io.on('connection', (socket)=>{
             text: msg.text
         })
     });
+    socket.on('createLocationMsg', (msg) => {
+        console.log('msg', msg);
+        var latitude = msg.latitude;
+        var longitude = msg.longitude;
+        io.emit('newLocationMsg', {
+            from: 'User',
+            url: `https://www.google.com/maps?q=${latitude},${longitude}`
+        });
+    });
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
