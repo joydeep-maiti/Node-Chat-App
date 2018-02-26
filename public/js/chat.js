@@ -43,12 +43,14 @@ socket.on('newMsg', (msg)=> {
 });
 
 jQuery('#message-form').on('submit', (e) => {
+    
     e.preventDefault();
     socket.emit('createMsg', {
         to: 'abc',
         text: jQuery('[name=msg]').val(),
         createdAt: moment().valueOf()
     });
+    document.getElementById('message-form').reset();
     // console.log();
 });
 
